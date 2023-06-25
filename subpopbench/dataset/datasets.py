@@ -89,6 +89,7 @@ class SubpopDataset:
             self.weights_y.append(len(self) / self.class_sizes[self.y[i]])
 
     def subsample(self, subsample_type):
+        """This function makes either all classes or all groups the same size."""
         assert subsample_type in {"group", "class"}
         perm = torch.randperm(len(self)).tolist()
         min_size = min(list(self.group_sizes)) if subsample_type == "group" else min(list(self.class_sizes))
